@@ -9,7 +9,7 @@ In the settings of this repository `simple-to-do`, I chose to publish the `main`
 
 ![Settings of the repository to publish it as a page on GitHub](publish-as-page.png)
 
-This means that this app is now available at https://codepo8.github.io/simple-to-do/. Every time I publish to the `main` branch, it triggers an action and the page is generated.
+This means that this app is now available at https://ezezn.github.io/zn-sleepbox/. Every time I publish to the `main` branch, it triggers an action and the page is generated.
 
 This here is a template repository that does not only publish the page, but also offers it as an installable app and shows the page when the user is offline.
 
