@@ -13,23 +13,23 @@ body {
 
 }
 
-header, footer {
+.header, .footer {
     position: sticky;
     min-height: 2rem;
     width: 100%;
 }
 
-header {
+.header {
     top: 0;
     background-color: darkcyan;
 }
 
-footer {
+.footer {
     bottom: 0;
     background-color: azure;
 }
 
-section {
+.section {
     scroll-behavior: smooth;
     overflow: auto;
 }
