@@ -3,20 +3,33 @@ body {
     color: #333;
     background-color: #fff;
     margin: 0;
-    padding: 2em;
-    height: 90vh;
-    background: url(../img/icon.png) 95% 95% no-repeat;
-    background-size: 20vh;
-}
-h1 {
-    font-size: 1.5em;
-    font-weight: normal;
-    margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../img/icon.png) 95% 95% no-repeat;
+    font-size: 24px;
+    background-color: #D9AFD9;
+    background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
 }
-p {
-    width: 80vw;
+
+header, footer {
+    position: sticky;
+    min-height: 2rem;
+    width: 100%;
 }
-a {
-    color: #369;
+
+header {
+    top: 0;
+    background-color: darkcyan;
+}
+
+footer {
+    bottom: 0;
+    background-color: azure;
+}
+
+section {
+    scroll-behavior: smooth;
+    overflow: auto;
 }
