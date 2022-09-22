@@ -1,6 +1,6 @@
 var GHPATH = '/github-page-pwa';
 var APP_PREFIX = 'zn-sleepbox_';
-var VERSION = 'version_003abc';
+var VERSION = 'version_004';
 var URLS = [    
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
