@@ -1,5 +1,6 @@
 import ButtonBuilder from "./ButtonBuilder.js";
 import State from "./State.js";
+import { play, registerTrack, switchSong } from "./Looper.js";
 import { defer } from "./Utils.js";
 
 // Define a convenience method and use it
@@ -14,7 +15,12 @@ var logButton = function (buttonName) {
     setTimeout(() => {
         result.resolve(true);
         console.log(`${buttonName} button clicked..`)
-        if (buttonName !== 'power') State.set('backgroundSelection', buttonName);
+        if (buttonName !== 'power') {
+            State.set('backgroundSelection', buttonName);
+            switchSong('background', buttonName);
+        } else {
+            play();
+        }
     }, 2000);
     return result;
 }
@@ -38,8 +44,18 @@ var connectButtons = function () {
     if (State.get('loopActive')) {
         ButtonBuilder.click('power');
     }
+}
 
-
+var startAudio = function () {
+    console.log("starting audio");
+    registerTrack('background', {
+        files: {
+            noise: '/sound/noise.mp3',
+            wind: '/sound/forest-stream.mp3',
+            raindrops: '/sound/light-rain.mp3',
+            music: '/sound/lullaby.mp3'
+        }
+    });
 }
 
 ready(() => { 
@@ -48,7 +64,7 @@ ready(() => {
         backgroundSelection: 'noise',
         loopActive: false
     });
-
+    startAudio();
     connectButtons();
 
 });
