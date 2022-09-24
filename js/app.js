@@ -1,44 +1,30 @@
 import ButtonBuilder from "./ButtonBuilder.js";
 import State from "./State.js";
-import { play, registerTrack, switchSong } from "./Looper.js";
-import { defer } from "./Utils.js";
+//import { play, pause, registerTrack, switchSong } from "./Looper.js";
+import { defer, domReady } from "./Utils.js";
+import { initTrack, selectSong, playTracks, pauseTracks } from "./AudioControler.js";  
 
-// Define a convenience method and use it
-
-var ready = (callback) => {
-    if (document.readyState != "loading") callback();
-    else document.addEventListener("DOMContentLoaded", callback);
-}
-  
-var logButton = function (buttonName) {
-    let result = new defer();
-    setTimeout(() => {
-        result.resolve(true);
-        console.log(`${buttonName} button clicked..`)
-        if (buttonName !== 'power') {
-            State.set('backgroundSelection', buttonName);
-            switchSong('background', buttonName);
-        } else {
-            play();
-        }
-    }, 2000);
-    return result;
+var selectBackground = function (buttonName) {
+    return selectSong('backgroundSelection', buttonName).then(() => {
+        State.set('backgroundSelection', buttonName);
+    });
 }
 
 var connectButtons = function () {
     ButtonBuilder.toggleButton('power', {
-        click: logButton,
         on: (buttonName) => {
             State.set('loopActive', true);
+            return playTracks();
         },
         off: (buttonName) => {
             State.set('loopActive', false);
+            return pauseTracks();
         }
     })
-    ButtonBuilder.groupedButton('noise', 'backSelector', logButton);
-    ButtonBuilder.groupedButton('wind', 'backSelector', logButton);
-    ButtonBuilder.groupedButton('raindrops', 'backSelector', logButton);
-    ButtonBuilder.groupedButton('music', 'backSelector', logButton);
+    ButtonBuilder.groupedButton('noise', 'backSelector', selectBackground);
+    ButtonBuilder.groupedButton('wind', 'backSelector', selectBackground);
+    ButtonBuilder.groupedButton('raindrops', 'backSelector', selectBackground);
+    ButtonBuilder.groupedButton('music', 'backSelector', selectBackground);
 
     ButtonBuilder.click(State.get('backgroundSelection'));
     if (State.get('loopActive')) {
@@ -47,24 +33,14 @@ var connectButtons = function () {
 }
 
 var startAudio = function () {
-    console.log("starting audio");
-    registerTrack('background', {
-        files: {
-            noise: '/sound/noise.mp3',
-            wind: '/sound/forest-stream.mp3',
-            raindrops: '/sound/light-rain.mp3',
-            music: '/sound/lullaby.mp3'
-        }
-    });
+    return initTrack('background').then((results) => { console.log(`Sound ready : ${JSON.stringify(results)}`) });
 }
 
-ready(() => { 
+domReady(() => { 
     /* Do things after DOM has fully loaded */
     State.init({
         backgroundSelection: 'noise',
         loopActive: false
     });
-    startAudio();
-    connectButtons();
-
+    startAudio().then(connectButtons);
 });

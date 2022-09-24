@@ -27,3 +27,16 @@ export const defer = function () {
     let capitalString = capital.join("");
     return capitalString
   }
+
+// Define a convenience method and use it
+
+export const domReady = (callback) => {
+  if (document.readyState != "loading") callback();
+  else document.addEventListener("DOMContentLoaded", callback);
+}
+
+export const findEl = function (query, parentEl) {
+  let p = parentEl? parentEl : document;
+  let results = p.querySelectorAll(query);
+  return results.length > 1? results : results[0];
+}

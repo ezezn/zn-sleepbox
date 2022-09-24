@@ -244,3 +244,8 @@ body {
 .icon.icon-power {
     font-size: 70vw;
 }
+
+/*-- Audio --*/
+.audio-container {
+    display: none;
+}
