@@ -11,6 +11,13 @@ export const initTrack = function (trackName) {
         audio.addEventListener("loadeddata", () => {
             taskResult.resolve(audio.getAttribute('data-sound'));
         }, { once: true });
+        ondurationchange
+        audio.addEventListener("durationchange", () => {
+            let start = audio.getAttribute('data-start');
+            let end = audio.getAttribute('data-end');
+            let name = audio.getAttribute('data-sound');
+            console.log(`[${name}]--> start: ${start}, end: ${end}, duration: ${audio.duration} `);
+        }, { once: true });
         audio.load();
         taskResults.push(taskResult);
     });
@@ -20,7 +27,8 @@ export const initTrack = function (trackName) {
 export const playTracks = function () {
     let taskResults = [];
     if (!playing && Object.keys(selection).length) {
-        for (const songName in selection) {
+        for (const trackName in selection) {
+            let songName = selection[trackName];
             let audio = findEl(`[data-sound="${songName}"]`);
             let task = new defer();
             audio.addEventListener("play", () => {
@@ -42,7 +50,8 @@ export const playTracks = function () {
 export const pauseTracks = function () {
     let taskResults = [];
     if (playing) {
-        for (const songName in selection) {
+        for (const trackName in selection) {
+            let songName = selection[trackName];
             let audio = findEl(`[data-sound="${songName}"]`);
             let task = new defer();
             audio.addEventListener("pause", () => {
@@ -61,10 +70,10 @@ export const pauseTracks = function () {
     } 
 }
 
-export const selectSong = function (songName, trackName) {
+export const selectSong = function ( trackName, songName) {
     let taskResult = new defer();
     selection[trackName] = songName;
-
+    console.log(selection);
     taskResult.resolve(true);
     return taskResult;
 }
