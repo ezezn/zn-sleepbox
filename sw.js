@@ -1,12 +1,19 @@
 var GHPATH = '/github-page-pwa';
 var APP_PREFIX = 'zn-sleepbox_';
-var VERSION = 'version_007';
+var VERSION = 'version_008';
 var URLS = [    
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
+  `${GHPATH}/font/Roboto-Light.ttf`,
+  `${GHPATH}/font/Roboto-Medium.ttf`,
+  `${GHPATH}/font/Roboto-Regular.ttf`,
   `${GHPATH}/css/styles.css`,
   `${GHPATH}/img/icon.png`,
-  `${GHPATH}/js/app.js`
+  `${GHPATH}/js/app.js`,
+  `${GHPATH}/js/AudioControler.js`,
+  `${GHPATH}/js/ButtonBuilder.js`,
+  `${GHPATH}/js/State.js`,
+  `${GHPATH}/js/Utils.js`
 ]
 
 var CACHE_NAME = APP_PREFIX + VERSION
