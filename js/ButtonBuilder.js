@@ -41,23 +41,29 @@ export default Object.assign({}, {
             });
         }
     },
-    groupedButton (buttonName, groupName, onClick, startActive) {
+    groupedButton (buttonName, groupName, onClick, onClickAgain) {
         let element = document.querySelector(`.js-button-${buttonName}`);
         if (element) {
             if (!buttonGroups[groupName]) buttonGroups[groupName] = {};
-            buttonGroups[groupName][buttonName] = startActive;
+            buttonGroups[groupName][buttonName] = false;
             element.addEventListener('click', async (event) => {
-                
                 if (!element.classList.contains("busy")) {
                     element.classList.add("busy");
-                    for (const name in buttonGroups[groupName]) {
-                        let other = document.querySelector(`.js-button-${name}`);
-                        other.classList.remove("active");                    
+                    if (!element.classList.contains("active")) {
+                        for (const name in buttonGroups[groupName]) {
+                            let other = document.querySelector(`.js-button-${name}`);
+                            other.classList.remove("active");                    
+                        }
+                        if (onClick) {
+                            await onClick(buttonName, event, element);
+                        }
+                        element.classList.add("active");
+                    } else {
+                        if (onClickAgain) {
+                            await onClickAgain(buttonName, event, element);
+                        }
+                        element.classList.remove("active");                        
                     }
-                    if (onClick) {
-                        await onClick(buttonName, event, element);
-                    }
-                    element.classList.toggle("active");
                     element.classList.remove("busy");
                 }
             });
@@ -65,6 +71,8 @@ export default Object.assign({}, {
     },
     click (buttonName) {
         let element = document.querySelector(`.js-button-${buttonName}`);
-        element.dispatchEvent(clickEvent);
+        if (element) {
+            element.dispatchEvent(clickEvent);
+        }
     }
   });

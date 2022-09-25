@@ -21,5 +21,8 @@ export default Object.assign({}, {
     },
     set (prop, value) {
         window.localStorage.setItem(prop, JSON.stringify(value));
+    },
+    remove (prop) {
+        window.localStorage.removeItem(prop)
     }
   });

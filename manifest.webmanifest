@@ -1,11 +1,11 @@
 {
-  "name": "Github Page PWA",
-  "short_name": "GPPWA",
-  "description": "Github Page as a Progressive Web App",
+  "name": "Zn Sleepbox",
+  "short_name": "Sleepbox",
+  "description": "A simple sund player for relaxing sounds",
   "scope": "/zn-sleepbox/",
   "start_url": "/zn-sleepbox/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#202024",
+  "theme_color": "#202024",
   "display": "standalone", 
   "icons": [
       {
