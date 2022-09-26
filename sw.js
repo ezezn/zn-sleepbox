@@ -1,9 +1,20 @@
-var GHPATH = '/github-page-pwa';
+var GHPATH = '/zn-sleepbox';
 var APP_PREFIX = 'zn-sleepbox_';
-var VERSION = 'version_008';
+var VERSION = 'version_009';
 var URLS = [    
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
+  `${GHPATH}/sound/avenida_las_camelias.mp3`,
+  `${GHPATH}/sound/benjamin_amadeo_para_siempre.mp3`,
+  `${GHPATH}/sound/dame_tu_manito.mp3`,
+  `${GHPATH}/sound/lullaby_1.ogg`,
+  `${GHPATH}/sound/marolio.mp3`,
+  `${GHPATH}/sound/rain.ogg`,
+  `${GHPATH}/sound/shh_shh_shh_shh_shh.ogg`,
+  `${GHPATH}/sound/shh_shh_shh.ogg`,
+  `${GHPATH}/sound/shh_shh.ogg`,
+  `${GHPATH}/sound/white_noise.ogg`,
+  `${GHPATH}/sound/wind.ogg`,
   `${GHPATH}/font/Roboto-Light.ttf`,
   `${GHPATH}/font/Roboto-Medium.ttf`,
   `${GHPATH}/font/Roboto-Regular.ttf`,

@@ -5,12 +5,18 @@ const clickEvent = new MouseEvent('click', {
     bubbles: true,
     cancelable: true
 });
+
+const hapticResponse = function () {
+    if ('vibrate' in navigator) navigator.vibrate(500);
+}
+
 // Flux store Singleton way
 export default Object.assign({}, {
     pushButton (buttonName, onClick) {
         let element = document.querySelector(`.js-button-${buttonName}`);
         if (element && onClick) {
             element.addEventListener('click', async (event) => {
+                hapticResponse();
                 if (!element.classList.contains("busy")) {
                     element.classList.add("busy");
                     await onClick(buttonName, event, element);
@@ -23,7 +29,7 @@ export default Object.assign({}, {
         let element = document.querySelector(`.js-button-${buttonName}`);
         if (element) {
             element.addEventListener('click', async (event) => {
-                
+                hapticResponse();
                 if (!element.classList.contains("busy")) {
                     element.classList.add("busy");
 
@@ -47,6 +53,7 @@ export default Object.assign({}, {
             if (!buttonGroups[groupName]) buttonGroups[groupName] = {};
             buttonGroups[groupName][buttonName] = false;
             element.addEventListener('click', async (event) => {
+                hapticResponse();
                 if (!element.classList.contains("busy")) {
                     element.classList.add("busy");
                     if (!element.classList.contains("active")) {

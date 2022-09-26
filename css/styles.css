@@ -110,7 +110,7 @@ body {
 .section {
     scroll-behavior: smooth;
     overflow: auto;
-    height: calc(100% - (2 * var(--toolbar-size)));
+    height: calc(100% - var(--toolbar-size));
 }
 
 /* --- Grid System ---- */
